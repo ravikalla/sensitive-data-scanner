@@ -119,6 +119,22 @@ The application reads Kafka connection details from the environment variables
 `KAFKA_BOOTSTRAP_SERVERS` and `KAFKA_TOPIC` (command line arguments override
 them).
 
+### Creating a Kafka topic locally
+
+Build the helper Docker image and run it with the appropriate environment
+variables to create the topic:
+
+```bash
+docker build -f KafkaTopic.Dockerfile -t kafka-topic-helper .
+docker run --rm \
+  -e KAFKA_BOOTSTRAP_SERVERS=localhost:9092 \
+  -e KAFKA_TOPIC=scan-input \
+  kafka-topic-helper
+```
+
+The image uses the same `KAFKA_BOOTSTRAP_SERVERS` and `KAFKA_TOPIC` variables
+(with optional `KAFKA_PARTITIONS` and `KAFKA_REPLICATION`) to create the topic.
+
 ---
 
 ## 📅 Development Timeline
