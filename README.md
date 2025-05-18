@@ -1,11 +1,40 @@
 # Sensitive Data Scanner
 
-This project aims to build a reactive application using **Spring WebFlux** to detect sensitive information stored in Amazon S3 buckets. The vision is to run the scanner across multiple machines so that scanning tasks can be performed in parallel.
+This project is a simple Spring WebFlux application that reads file names from an incoming Kafka topic, downloads the files from Amazon S3, scans them for sensitive data, and publishes the results to an outgoing Kafka topic.
 
-## Goals
+The application is reactive end-to-end using Reactor and integrates with Kafka through `spring-kafka` and `reactor-kafka`.
 
-- Use Spring's reactive programming model (WebFlux) for non-blocking processing.
-- Enable distributed execution so several machines can cooperate to scan large S3 datasets concurrently.
-- Identify files or objects in S3 that may contain sensitive data.
+## Building
 
-The repository is currently in an early stage and will evolve as the implementation progresses.
+You can build the project with Maven or Gradle. Maven is used by default, but a
+Gradle build script is also provided.
+
+Using Maven:
+
+```
+mvn package
+```
+
+Using Gradle:
+
+```
+./gradlew build
+```
+
+## Running tests
+
+```
+mvn test
+```
+
+Or with Gradle:
+
+```
+./gradlew test
+```
+
+The tests include a small Cucumber feature demonstrating the scanning logic.
+
+## Configuration
+
+Configuration values such as Kafka bootstrap servers, topics, and S3 bucket name can be found in `src/main/resources/application.yml`.
