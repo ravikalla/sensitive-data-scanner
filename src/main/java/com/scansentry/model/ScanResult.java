@@ -1,5 +1,8 @@
 package com.scansentry.model;
 
+import lombok.Data;
+
+@Data
 public class ScanResult {
     private String bucket;
     private String objectKey;
