@@ -102,6 +102,23 @@ graph TD
 * [ ] Develop ScanSentry engine
 * [ ] Integrate dashboards
 
+### Standalone Kafka Scanner
+
+The `KafkaScannerApplication` demonstrates a minimal setup that continuously reads
+messages from a Kafka topic, scans them for sensitive data, and stores results in
+an in-memory repository.
+
+Run it after building the project:
+
+```bash
+./gradlew build
+java -cp build/classes/java/main com.scansentry.KafkaScannerApplication
+```
+
+The application reads Kafka connection details from the environment variables
+`KAFKA_BOOTSTRAP_SERVERS` and `KAFKA_TOPIC` (command line arguments override
+them).
+
 ---
 
 ## 📅 Development Timeline
